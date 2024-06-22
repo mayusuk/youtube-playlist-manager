@@ -35,9 +35,12 @@ def main():
         api_service_name, api_version, credentials=credentials, num_retries=3)
     
     added = set()
-    video_ids_already_added_file = open("video_ids_already_added.txt", "r")
-    for video_id in video_ids_already_added_file:
-       added.add(video_id.strip("\n"))
+
+    video_added_file_exists = os.path.isfile("video_ids_already_added.txt")
+    if video_added_file_exists:
+      video_ids_already_added_file = open("video_ids_already_added.txt", "r")
+      for video_id in video_ids_already_added_file:
+        added.add(video_id.strip("\n"))
 
     not_found_song = open("not_working_song_id.txt", "w+")
     video_ids_file = open("video_ids.txt", "r")
@@ -54,7 +57,7 @@ def main():
          not_found_song.write("\n")
          continue
       
-      add_to_playlist("PLA5qihfLssKpOpcFm4s5A1t4OHyeJv8ro", video_id, youtube)
+      add_to_playlist("PLD7Qg9cVYoszGtrKTm9FoTyfvLNEJ7IjF", video_id, youtube)
       time.sleep(1)
 
 

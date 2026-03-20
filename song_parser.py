@@ -1,43 +1,36 @@
+from pathlib import Path
+import argparse
+
+from youtube_playlist_manager.chat_export import parse_chat_export
 
 
-f = open("_chat.txt")
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Compatibility wrapper around the new chat export parser."
+    )
+    parser.add_argument(
+        "chat_export",
+        nargs="?",
+        default="_chat.txt",
+        help="Path to a WhatsApp export .txt or .zip file.",
+    )
+    parser.add_argument(
+        "--output",
+        default="video_ids.txt",
+        help="Where to write extracted video IDs.",
+    )
+    args = parser.parse_args()
 
-count = 0
+    result = parse_chat_export(args.chat_export)
+    Path(args.output).write_text("\n".join(result.video_ids) + "\n", encoding="utf-8")
 
-not_songs = []
-songs = []
-for line in f:
-    index = line.find("https")
-    if index >= 0:
-        song = line[index:].strip("\n")
-        # print(song)
-        count += 1
-        songs.append(song)
-    else:
-        not_songs.append(line)
-    
-# print(count,len(not_songs))
-        
-# print(songs)
+    if result.unmatched_urls:
+        print("Unmatched URLs:")
+        for url in result.unmatched_urls:
+            print(url)
 
-video_ids = []
-song_without_video_ids = []
-for song in songs:
-    index = song.find("?v=")
-    if index >= 0:
-        video_id = song[index+3:].split("&")[0]
-        video_ids.append(video_id)
-    elif song.find("youtu.be") >= 0:
-        video_ids.append(song.split("https://youtu.be/")[1])
-    else:
-        song_without_video_ids.append(song)
-# print(video_ids,len(video_ids))
-print(song_without_video_ids)
+    return 0
 
 
-video_ids_file = open("video_ids.txt", "w")
-
-for id in video_ids:
-    video_ids_file.write(id)
-    video_ids_file.write("\n")
-
+if __name__ == "__main__":
+    raise SystemExit(main())

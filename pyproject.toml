@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "youtube-playlist-manager"
+version = "0.1.0"
+description = "Build or sync a YouTube playlist from a WhatsApp chat export."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  {name = "Mayur Khandave"},
+]
+keywords = ["youtube", "playlist", "whatsapp", "music", "cli"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: End Users/Desktop",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Multimedia :: Sound/Audio",
+  "Topic :: Utilities",
+]
+dependencies = [
+  "google-api-python-client>=2.0.0",
+  "google-auth-oauthlib>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/mayusuk/youtube-playlist-manager"
+Repository = "https://github.com/mayusuk/youtube-playlist-manager"
+Issues = "https://github.com/mayusuk/youtube-playlist-manager/issues"
+
+[project.scripts]
+youtube-playlist-manager = "youtube_playlist_manager.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["youtube_playlist_manager*"]

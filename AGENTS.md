@@ -12,16 +12,12 @@ The main workflow is:
 4. Find or create a target playlist on that user's YouTube account.
 5. Add valid videos that are not already in the playlist.
 
-The project still includes the original scripts, but the supported entrypoint is now the installable CLI.
-
 ## Repository Layout
 
 - `pyproject.toml`: Package metadata and CLI entrypoint.
 - `youtube_playlist_manager/cli.py`: Main CLI interface.
 - `youtube_playlist_manager/chat_export.py`: WhatsApp export loading and YouTube URL parsing.
 - `youtube_playlist_manager/youtube_api.py`: OAuth, playlist lookup/creation, and sync logic.
-- `song_parser.py`: Compatibility wrapper around the new parser.
-- `update_playlist.py`: Compatibility wrapper around the new YouTube sync logic.
 - `tests/test_chat_export.py`: Parser tests.
 - `CHANGELOG.md`: Release notes.
 - `README.md`: User-facing setup and usage instructions.
@@ -134,5 +130,3 @@ This is now a lightweight shareable CLI for:
 - reading a WhatsApp export
 - extracting YouTube video IDs robustly
 - syncing those videos into a user-selected playlist on the user's own account
-
-The original one-off scripts are preserved as wrappers, but the maintained path is the packaged CLI.

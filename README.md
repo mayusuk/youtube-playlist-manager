@@ -209,14 +209,9 @@ Important tradeoffs:
 - Review the reported matches if you care about precision.
 - YouTube search calls are much more quota-expensive than direct video inserts, so this mode should stay optional.
 
-## Compatibility Scripts
+## CLI Entry Point
 
-The original repo scripts still exist as compatibility wrappers:
-
-- `song_parser.py`
-- `update_playlist.py`
-
-The main supported entrypoint is the CLI:
+The supported entrypoint is the CLI:
 
 ```bash
 python -m youtube_playlist_manager --help
